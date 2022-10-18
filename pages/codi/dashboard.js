@@ -132,13 +132,13 @@ function Dashboard() {
         const getLastGame = async() => {
             const killerCollectionRef = query(collection(db, "users", `${globalUser.email}`, "gamesCodi"),orderBy("date", "desc"), limit(1));
             onSnapshot(killerCollectionRef, (querySnapshot) => {
+                setLastCodiGame([])
                 querySnapshot.forEach((doc) => {
                     const lastCodiGame = doc.data()
                     const lastId = doc.id
                     const killer = lastCodiGame.killerKills
                     const nab = lastCodiGame.nabKills
                     setLastId(lastId)
-
                     setLastCodiGame((prev) => {
                         return[...prev, lastCodiGame]
                     })
@@ -245,11 +245,15 @@ function Dashboard() {
         })
     }
     // Reset Counter
-    async function resetCounterCodi() {
+    async function resetCounterCodi(idDocument) {
         setPlayer1KillCounter(0)
         setPlayer2KillCounter(0)
         setPlayer3KillCounter(0)
         setPlayer4KillCounter(0)
+        setCurrentKills1(0)
+        setCurrentKills2(0)
+        setCurrentKills3(0)
+        setCurrentKills4(0)
         setKillsPlayer1("")
         setKillsPlayer2("")
         setKillsPlayer3("")
@@ -298,9 +302,9 @@ function Dashboard() {
                 <Grid item xs={12}>
                     <Box className={styles.currentHistorial} sx={{boxShadow: 1, mt: 2}}>
                     {
-                        lastCodiGame.map((codiGame) => {
+                        lastCodiGame.map((codiGame, index) => {
                             return(
-                            <TableContainer key={codiGame.date} className={styles.tableContainer} component={Paper}>
+                            <TableContainer key={index} className={styles.tableContainer} component={Paper}>
                             <Table sx={{ minWidth: 300 }} aria-label="simple table">
                                 <TableHead>
                                     <TableRow className={styles.tableSubtitle}>
@@ -308,7 +312,7 @@ function Dashboard() {
                                         <TableCell align="center"><Typography variant="h5">Bajas</Typography></TableCell>
                                     </TableRow>
                                 </TableHead>
-                                <TableBody key={codiGame.date}>
+                                <TableBody>
                                     <TableRow
                                         className={styles.table}
                                     >
