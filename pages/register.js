@@ -25,6 +25,23 @@ import { motion, AnimatePresence } from "framer-motion";
 function Register() {
     // Router
     const router = useRouter();
+    // Email Verify
+    const actionCodeSettings = {
+        // URL you want to redirect back to. The domain (www.example.com) for this
+        // URL must be in the authorized domains list in the Firebase Console.
+        url: 'https://virgo-anotador-qg4c7w91v-leoneldenett.vercel.app/login',
+        // This must be true.
+        handleCodeInApp: true,
+        iOS: {
+          bundleId: 'com.example.ios'
+        },
+        android: {
+          packageName: 'https://virgo-anotador-qg4c7w91v-leoneldenett.vercel.app/login',
+          installApp: true,
+          minimumVersion: '12'
+        },
+        dynamicLinkDomain: 'https://virgo-anotador-qg4c7w91v-leoneldenett.vercel.app/login'
+    };
 
     return (
         <Box className={styles.container} sx={{px: {xs: "1.25rem", md: "10rem", lg: "20rem"}, py: {xs: "1.25rem", lg: "1.5rem"}}}>
