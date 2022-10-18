@@ -20,7 +20,7 @@ function VerifyEmail() {
     // Resend Email
     const resendEmailVerification = () => {
         setButtonDisabled(true)
-        sendEmailVerification(auth.currentUser, {url: "https://virgo-anotador-pro-blue.vercel.app"})
+        sendEmailVerification(auth.currentUser)
         .then(() => {
             setButtonDisabled(false);
             setTimeActive(true)
