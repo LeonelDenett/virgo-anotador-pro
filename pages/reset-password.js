@@ -10,7 +10,7 @@ import Typography from "@mui/material/Typography";
 // Mui Icons
 import WestRoundedIcon from "@mui/icons-material/WestRounded";
 // Components
-import { InputTextField } from "../components/InputTextField";
+import { InputTextField } from "../components//Formik/InputTextField";
 // Toastify
 import { toast } from "react-toastify";
 // Formik and Yup Validations
