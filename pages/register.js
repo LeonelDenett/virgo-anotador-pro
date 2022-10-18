@@ -55,7 +55,7 @@ function Register() {
                     onSubmit={values => {
                         createUserWithEmailAndPassword(auth, values.email, values.password)
                         .then(() => {
-                            sendEmailVerification(auth.currentUser, {url: "http://localhost:3000/login"});
+                            sendEmailVerification(auth.currentUser, actionCodeSettings);
                             toast.success("Cuenta creada con éxito.");
                             console.log(auth.currentUser.uid)
                             router.push("/verify-email");
