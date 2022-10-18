@@ -38,7 +38,7 @@ function ResetPassword() {
                     validationSchema={validationSchemaResetPassword}
                     onSubmit={values => {
                         try{
-                            sendPasswordResetEmail(auth, values.email, {url: "http://localhost:3000/login"})
+                            sendPasswordResetEmail(auth, values.email, {url: "https://virgo-anotador-pro.vercel.app/login"})
                             .then(() => {
                                 console.log("Link enviado a:", values.email)
                                 toast.success("Link para restablecer contraseña enviado con éxito.")

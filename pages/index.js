@@ -26,6 +26,8 @@ import { dashboard } from "../components/FramerMotionVariants/Variants";
 import { useUserAuth } from "../components/AuthContext";
 // Toastify
 import { toast } from "react-toastify";
+import { addDoc, collection, doc, getDoc, setDoc } from "firebase/firestore";
+import { db } from "../firebase-config";
 
 export default function Home() {
     // Router
@@ -39,6 +41,10 @@ export default function Home() {
     const matches = useMediaQuery(theme.breakpoints.up('md'));
     // Get Name of Current User
     const [displayEmail, setDisplayEmail] = useState([])
+    // Date
+    const now = new Date();
+    const current = now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
+    const date = now.toLocaleDateString() + " at " + current;
 
     useEffect(() => {
         if (!globalUser) {
@@ -54,8 +60,24 @@ export default function Home() {
         }
     }, [])
 
-    const DisabledAlert = () => {
-        toast.dark("No disponible todavia")
+    useEffect(() => {
+        async function createUserFetch() {
+            const createUserDocFetch = createData(globalUser.email)
+        }
+        createUserFetch()
+    }, [])
+
+    async function createData(idDocument) {
+        const docUserRef = doc(db, `users/${idDocument}`)
+        getDoc(docUserRef);
+        const consult = await getDoc(docUserRef);
+        if (consult.exists()){
+            console.log("Users collection updated with the new user")
+        } else {
+            await setDoc(docUserRef, {
+                date: now.toLocaleDateString() + " at " + current,
+            })
+        }
     }
 
   return (

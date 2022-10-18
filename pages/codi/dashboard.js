@@ -37,18 +37,6 @@ import { db } from "../../firebase-config";
 import { collection, onSnapshot, addDoc, query, orderBy, limit, getDocs, deleteDoc,  getDoc, doc, updateDoc, where, setDoc, arrayUnion, increment  } from "firebase/firestore"
 import { useUserAuth } from "../../components/AuthContext";
 
-const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 335,
-    background: "linear-gradient(to right, #f83600, #fe8c00)",
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
-};
-
 function Dashboard() {
     // Router
     const router = useRouter();
@@ -425,7 +413,7 @@ function Dashboard() {
                 }}
             >
                 <Fade in={open}>
-                <Box sx={style}>
+                <Box className={styles.modal}>
                     <Typography id="transition-modal-title" variant="h6" component="h2">
                     Nueva partida
                     </Typography>
@@ -445,137 +433,7 @@ function Dashboard() {
                 </Fade>
             </Modal>
         </Box>
-        // <div>
-        //     hola
-        //     <Grid item xs={6}>
-        //         <Button onClick={handleOpen} className={styles.newGame} variant="contained" sx={{boxShadow: 1, mt: 2}}>
-        //             + partida
-        //         </Button>
-        //         <Button variant="outlined" color="secondary" onClick={resetCounterCodi}>resetear conteur</Button>
-        //     </Grid>
-
-        //     <Modal
-        //          aria-labelledby="transition-modal-title"
-        //          aria-describedby="transition-modal-description"
-        //          open={open}
-        //          onClose={handleClose}
-        //          closeAfterTransition
-        //          BackdropComponent={Backdrop}
-        //          BackdropProps={{
-        //          timeout: 500,
-        //         }}
-        //     >
-        //          <Fade in={open}>
-        //          <Box sx={style}>
-        //              <Typography id="transition-modal-title" variant="h6" component="h2">
-        //              Nueva partida
-        //              </Typography>
-                    
-        //              {/* {codiGames.map((item) => {
-        //                 if (killerKills == player1KillCounter) {
-        //                         console.log("player1 es el killer")
-        //                         setKillerName("gato")
-        //                     } else if (killerKills == player2KillCounter) {
-        //                         console.log("player2 es el killer")
-        //                         setKillerName("puto")
-        //                     } else if (killerKills == player3KillCounter) {
-        //                         console.log("player3 es el killer")
-        //                         setKillerName("player3 es el killer")
-        //                     } else if (killerKills == player4KillCounter) {
-        //                         console.log("player4 es el killer")
-        //                         setKillerName("player3 es el killer")
-        //                     } else {
-        //                         console.log("No hay killer :)")
-        //                     }
-        //             })} */}
-                     
-
-
-        //              <FormControl variant="filled" sx={{ m: 1, minWidth: 120 }}>
-        //                  <Typography mb={2}>{player1Name}</Typography>
-        //                  <TextField inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }} autoComplete="off" variant="outlined" name="killsPlayer1" label="kills" value={killsPlayer1} onChange={(e) => setKillsPlayer1(e.target.value)} />
-        //                  <Typography my={2}>{player2Name}</Typography>
-        //                  <TextField inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }} autoComplete="off" variant="outlined" name="killsPlayer2" label="kills" value={killsPlayer2} onChange={(e) => setKillsPlayer2(e.target.value)} />
-        //                  <Typography my={2}>{player3Name}</Typography>
-        //                  <TextField inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }} autoComplete="off" variant="outlined" name="killsPlayer3" label="kills" value={killsPlayer3} onChange={(e) => setKillsPlayer3(e.target.value)} />
-        //                  <Typography my={2}>{player4Name}</Typography>
-        //                  <TextField inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }} autoComplete="off" variant="outlined" name="killsPlayer4" label="kills" value={killsPlayer4} onChange={(e) => setKillsPlayer4(e.target.value)} />
-        //                  <Button sx={{mt: 3}} variant="contained" color="secondary" onClick={createCodi}>Anotar</Button>
-        //              </FormControl>
-        //         </Box>
-        //          </Fade>
-        //      </Modal>
-             
-        // </div>
     );
 }
 
 export default Dashboard;
-
-
-// {
-//     codiGames.map((codiGame) => {
-//         return(
-//             <TableBody>
-//                 <TableRow
-//                 className={styles.table}
-//                 key={codiGame.date}
-//                 >
-//                     <TableCell component="th" scope="row">
-//                     {codiGame.player1.name}
-//                         {/* {codiGame.player1.name}
-//                         {codiGame.player2.name}
-//                         {codiGame.player3.name}
-//                         {codiGame.player4.name} */}
-//                     </TableCell>
-//                     <TableCell align="center">
-//                     {codiGame.player1.kills}
-//                         {/* {codiGame.player1.kills}
-//                         {codiGame.player2.kills}
-//                         {codiGame.player3.kills}
-//                         {codiGame.player4.kills} */}
-//                     </TableCell>
-//                 </TableRow>
-//                 <TableRow
-//                 className={styles.table}
-//                 key={codiGame.date}
-//                 >
-//                     <TableCell component="th" scope="row">
-//                     {codiGame.player2.name}
-//                     </TableCell>
-//                     <TableCell align="center">
-//                     {codiGame.player2.kills}
-//                     </TableCell>
-//                 </TableRow>
-//             </TableBody>
-//         )
-//     })
-// }
-
-
-// .then((value) => {
-//     // Get id from new document created
-//     console.log("id document created:", value.id)
-//     let lastId = value.id
-//     // Update kill counter
-//     const docuRefUpdate = doc(db, `users/${globalUser.email}/gamesCodi/${lastId}`)
-//     // onSnapshot(docuRefUpdate, (querySnapshot) => {
-//     //     querySnapshot.forEach((doc) => {
-//     //         // console.log(JSON.stringify(doc.data()));
-//     //         const totalKills = doc.data()
-//     //         setPlayer1KillCounter((prev) => {
-//     //             return[...prev, totalKills]
-//     //         })
-//     //         console.log("Total kills player 1:", totalKills);
-//     //     });
-//     // });
-//     // updateDoc(docuRefUpdate, {
-//     //     "player1.totalKills": increment(killsPlayer1),
-//     //     "player2.totalKills": increment(killsPlayer2),
-//     //     "player3.totalKills": increment(killsPlayer3),
-//     //     "player4.totalKills": increment(killsPlayer4),
-//     // })
-//     // setPlayer1KillCounter(docuRefUpdate.player1.kills)
-//     // console.log("Kills counter updated!", docuRefUpdate.id)
-//     // console.log("Killer count player 1:", player1KillCounter)
-// })
