@@ -1,0 +1,8 @@
+.drawerContent{
+    background: rgb(254,140,0);
+    background: linear-gradient(to right, #f83600, #fe8c00);
+    display: flex;
+    justify-content: space-between;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}

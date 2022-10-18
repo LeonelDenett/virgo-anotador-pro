@@ -1,0 +1,67 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+    background: #fe8c00;
+    background: -webkit-linear-gradient(to left, #f83600, #fe8c00);
+    background: linear-gradient(to right, #f83600, #fe8c00);
+}
+.card{
+    background-color: #00000066;
+    border: solid 1px #ffffff;
+    padding: 2rem;
+    border-radius: 2rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+.logoContainer{
+    border-radius: 2rem;
+    margin-bottom: 2rem;
+}
+.logoImage{
+    border-radius: 2rem;
+}
+.label, .labelText {
+    color: #ffffff;
+}
+.labelText{
+    letter-spacing: 0.15rem;
+}
+.labelError, .labelTextError {
+    color: #f83600;
+}
+.submitButton{
+    border-radius: 0.75rem;
+    padding: 0.5rem;
+    margin-top: 1rem;
+}
+.linkContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.link {
+    cursor: pointer;
+    align-self: center;
+}
+.modal{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 60%;
+    padding: 1rem;
+    border-radius: 2rem;
+    text-align: center;
+    background-color: #ffffff;
+}
+.backToLogin{
+    display: flex;
+    justify-content: flex-end;
+}

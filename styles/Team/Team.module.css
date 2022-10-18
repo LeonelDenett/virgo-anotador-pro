@@ -1,0 +1,39 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: center;
+    height: 100%;
+    background: rgb(4,28,50);
+    background: linear-gradient(0deg, #041c32 0%, #0d83ba 50%, #041c32 100%);
+}
+.card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    box-shadow: #112b3c 0px 0px 32px -6px;
+    border: 1px solid #e3f2fd;
+    background: #fe8c00;
+    background: -webkit-linear-gradient(to right, #f83600, #fe8c00);
+    background: linear-gradient(to right, #f83600, #fe8c00);
+}
+.newTeamContainer{
+    display: flex;
+    flex-direction: column;
+}
+.newPlayers{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+.MyTeam{
+    padding: 2rem;
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #000000B3;
+}

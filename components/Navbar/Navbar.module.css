@@ -1,0 +1,8 @@
+.navbar {
+    min-height: 4rem;
+    display: flex;
+    justify-content: center;
+}
+.toolbar{
+    justify-content: space-between;
+}
