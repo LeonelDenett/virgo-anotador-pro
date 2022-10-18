@@ -17,8 +17,6 @@ import { useUserAuth } from "../components/AuthContext";
 import { toast } from "react-toastify";
 
 function VerifyEmail() {
-    // Global User
-    const {globalUser} = useUserAuth()
     // Resend Email
     const resendEmailVerification = () => {
         setButtonDisabled(true)
@@ -56,7 +54,7 @@ function VerifyEmail() {
             <Box className={styles.card}>
                 <Typography my={2} color="primary" variant="h2" component="h1">Verifica tu dirección de correo electrónico.</Typography>
                 <Typography mb={3} color="primary" id="transition-modal-title" variant="h6" component="h2">
-                    Confirma tu email "{globalUser.email}" para tener acceso a la aplicación.
+                    Confirma tu email para tener acceso a la aplicación.
                 </Typography>
                 <Button
                     variant="contained"

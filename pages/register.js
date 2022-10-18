@@ -40,11 +40,8 @@ function Register() {
                         .then(() => {
                             sendEmailVerification(auth.currentUser, {url: "http://localhost:3000/login"});
                             toast.success("Cuenta creada con éxito.");
-
-                        
-
                             console.log(auth.currentUser.uid)
-                            router.push("/login");
+                            router.push("/verify-email");
                         })
                         .catch(error => {
                             if (error.code === "auth/email-already-in-use") {
