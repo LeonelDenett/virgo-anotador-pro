@@ -67,9 +67,9 @@ function Historial() {
                 <Grid item xs={12}>
                     <Box className={styles.historial} sx={{boxShadow: 1, mt: 2}}>
                     {
-                        codiGames.map((codiGame) => {
+                        codiGames.map((codiGame, index) => {
                             return(
-                            <TableContainer className={styles.tableContainer} component={Paper}>
+                            <TableContainer key={index} className={styles.tableContainer} component={Paper}>
                             <Table sx={{ minWidth: 300 }} aria-label="simple table">
                                 <TableHead>
                                     <TableRow className={styles.tableSubtitle}>

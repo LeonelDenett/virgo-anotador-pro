@@ -96,7 +96,7 @@ function MyDrawer() {
                 </ListItem>
                 {/* Team and Codi */}
                 {items.map((item, index) => (
-                <Box my={3}>
+                <Box key={index} my={3}>
                     <ListSubheader sx={{backgroundColor: 'transparent'}}>
                         <Typography color="secondary">{item.header}</Typography>
                     </ListSubheader>

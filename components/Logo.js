@@ -15,7 +15,7 @@ function Logo({variants, initial, animate, exit, logoContainer, logoImage, width
             exit={exit}
             className={logoContainer}
             >
-                <img src="/logo.jpeg" alt="Logo" width={width} height={height} className={logoImage} />
+                <Image src="/logo.jpeg" alt="Logo" width={width} height={height} className={logoImage} />
         </Box>
     );
 }

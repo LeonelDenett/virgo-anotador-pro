@@ -36,7 +36,6 @@ import { InputTextField } from "../../components/Formik/InputTextField";
 import { db } from "../../firebase-config";
 import { collection, onSnapshot, addDoc, query, orderBy, limit, getDocs, deleteDoc,  getDoc, doc, updateDoc, where, setDoc, arrayUnion, increment  } from "firebase/firestore"
 import { useUserAuth } from "../../components/AuthContext";
-import { async } from "@firebase/util";
 
 const style = {
     position: 'absolute',
@@ -271,6 +270,8 @@ function Dashboard() {
         setKillsPlayer4("")
         setKillerKills(0)
         setNabKills(0)
+        setKillerName("")
+        setNabName("")
         const codiDocRef = doc(db, `users/${globalUser.email}/gamesCodi/${lastId}`);
         await updateDoc(codiDocRef, {
             date: now.toLocaleDateString() + " at " + current,
@@ -313,7 +314,7 @@ function Dashboard() {
                     {
                         lastCodiGame.map((codiGame) => {
                             return(
-                            <TableContainer className={styles.tableContainer} component={Paper}>
+                            <TableContainer key={codiGame.date} className={styles.tableContainer} component={Paper}>
                             <Table sx={{ minWidth: 300 }} aria-label="simple table">
                                 <TableHead>
                                     <TableRow className={styles.tableSubtitle}>
