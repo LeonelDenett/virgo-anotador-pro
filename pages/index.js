@@ -42,14 +42,12 @@ export default function Home() {
 
     useEffect(() => {
         if (!globalUser) {
-            logout()
             router.push('/login')
         } else {
             // Email verification
             const verified = globalUser.emailVerified
             console.log(`User loged in as ${globalUser.email}, verified: ${verified}`)
             if (verified === false ){
-                logout()
                 router.push('/verify-email')
                 console.log("Email is not verified")
             }

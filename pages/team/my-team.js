@@ -26,8 +26,14 @@ function MyTeam() {
 
     useEffect(() => {
         if (!globalUser) {
-        logout()
-        router.push('/login')
+            router.push('/login')
+        } else {
+            const verified = globalUser.emailVerified
+            console.log(`User loged in as ${globalUser.email}, verified: ${verified}`)
+            if (verified === false ){
+                router.push('/verify-email')
+                console.log("Email is not verified")
+            }
         }
     }, [])
 
