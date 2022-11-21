@@ -63,13 +63,14 @@ export default function Home() {
         }
     }, [])
 
-    if (globalUser) {
-        useEffect(() => {
+    
+    useEffect(() => {
+        if (globalUser) {
             async function createUserFetch() {
                 const createUserDocFetch = createData(globalUser.email)
             }
             createUserFetch()
-        }, [])
+        }
     
         async function createData(idDocument) {
             const docUserRef = doc(db, `users/${idDocument}`)
@@ -83,7 +84,7 @@ export default function Home() {
                 })
             }
         }
-    }
+    }, [])
 
     return (
     <Box
