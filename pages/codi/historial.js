@@ -19,6 +19,7 @@ import Paper from '@mui/material/Paper';
 import { db } from "../../firebase-config";
 import { getCollection, getDocs, collection, orderBy, limit, query, doc, onSnapshot } from "firebase/firestore";
 import { useUserAuth } from "../../components/AuthContext";
+import { height } from "@mui/system";
 
 function Historial() {
     // Global User
@@ -57,15 +58,16 @@ function Historial() {
             })
         }
         getPlayersNames()
-        // Get Last 3 Codi Game
+        // Get Last 10 Codi Game
         const getLast3Game = async() => {
-            const killerCollectionRef = query(collection(db, "users", `${globalUser.email}`, "gamesCodi"),orderBy("date", "desc"), limit(20));
+            const killerCollectionRef = query(collection(db, "users", `${globalUser.email}`, "gamesCodi"),orderBy("date", "desc"), limit(10));
             onSnapshot(killerCollectionRef, (querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                     const codiGame = doc.data()
                     setCodiGames((prev) => {
                         return[...prev, codiGame]
                     })
+                    console.log(codiGames)
                 });
             });
         }
@@ -82,12 +84,12 @@ function Historial() {
                     {
                         codiGames.map((codiGame, index) => {
                             return(
-                            <TableContainer key={index} className={styles.tableContainer} component={Paper}>
-                            <Table sx={{ minWidth: 300 }} aria-label="simple table">
+                            <TableContainer sx={{minHeight: {xl: "13rem"}, top: {xl: "4rem"}}} key={index} className={styles.tableContainer} component={Paper}>
+                            <Table sx={{ minWidth: 280, minHeight: {xl: "13rem"} }} aria-label="simple table">
                                 <TableHead>
                                     <TableRow className={styles.tableSubtitle}>
-                                        <TableCell><Typography variant="h5">Jugadores</Typography></TableCell>
-                                        <TableCell align="center"><Typography variant="h5">Bajas</Typography></TableCell>
+                                        <TableCell><Typography variant="h6">Jugadores</Typography></TableCell>
+                                        <TableCell align="center"><Typography variant="h6">Bajas</Typography></TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody key={codiGame.date}>
@@ -95,40 +97,40 @@ function Historial() {
                                         className={styles.table}
                                     >
                                         <TableCell component="th" scope="row">
-                                            <Typography variant="h6">{codiGame.player1.name}</Typography>
+                                            <Typography sx={{fontSize: "1.15rem"}}>{codiGame.player1.name}</Typography>
                                         </TableCell>
                                         <TableCell align="center">
-                                            <Typography variant="h6">{codiGame.player1.currentKills}</Typography>
+                                            <Typography sx={{fontSize: "1.15rem"}}>{codiGame.player1.currentKills}</Typography>
                                         </TableCell>
                                     </TableRow>
                                     <TableRow
                                         className={styles.table}
                                     >
                                         <TableCell component="th" scope="row">
-                                            <Typography variant="h6">{codiGame.player2.name}</Typography>
+                                            <Typography sx={{fontSize: "1.15rem"}}>{codiGame.player2.name}</Typography>
                                         </TableCell>
                                         <TableCell align="center">
-                                            <Typography variant="h6">{codiGame.player2.currentKills}</Typography>
+                                            <Typography sx={{fontSize: "1.15rem"}}>{codiGame.player2.currentKills}</Typography>
                                         </TableCell>
                                     </TableRow>
                                     <TableRow
                                         className={styles.table}
                                     >
                                         <TableCell component="th" scope="row">
-                                            <Typography variant="h6">{codiGame.player3.name}</Typography>
+                                            <Typography sx={{fontSize: "1.15rem"}}>{codiGame.player3.name}</Typography>
                                         </TableCell>
                                         <TableCell align="center">
-                                            <Typography variant="h6">{codiGame.player3.currentKills}</Typography>
+                                            <Typography sx={{fontSize: "1.15rem"}}>{codiGame.player3.currentKills}</Typography>
                                         </TableCell>
                                     </TableRow>
                                     <TableRow
                                         className={styles.table}
                                     >
                                         <TableCell component="th" scope="row">
-                                            <Typography variant="h6">{codiGame.player4.name}</Typography>
+                                            <Typography sx={{fontSize: "1.15rem"}}>{codiGame.player4.name}</Typography>
                                         </TableCell>
                                         <TableCell align="center">
-                                            <Typography variant="h6">{codiGame.player4.currentKills}</Typography>
+                                            <Typography sx={{fontSize: "1.15rem"}}>{codiGame.player4.currentKills}</Typography>
                                         </TableCell>
                                     </TableRow>
                                 </TableBody>

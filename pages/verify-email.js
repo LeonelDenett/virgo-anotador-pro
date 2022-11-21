@@ -17,6 +17,15 @@ import { useUserAuth } from "../components/AuthContext";
 import { toast } from "react-toastify";
 
 function VerifyEmail() {
+    const {globalUser} = useUserAuth()
+    const [currentEmail, setCurrentEmail] = useState("")
+    useEffect(() => {
+        if (!globalUser) {
+            setCurrentEmail("")
+        } else {
+            setCurrentEmail(auth.currentUser.email)
+        }
+    }, [])
     // Resend Email
     const resendEmailVerification = () => {
         setButtonDisabled(true)
@@ -26,8 +35,10 @@ function VerifyEmail() {
             setTimeActive(true)
             toast.success("Si el Email existe en nuestra base de datos se le enviará un link de verificación.")
         }).catch((error) => {
-            toast.error(error.message)
             setButtonDisabled(false)
+            if (error.code === "auth/too-many-requests") {
+                toast.error("Error: Intentaste logearte muchas veces erroneamente, te bloqueamos por cuestiones de seguridad. Intentá logearte mas tarde")
+            }
         })
     };
     // Timer for resend Email
@@ -54,7 +65,7 @@ function VerifyEmail() {
             <Box className={styles.card}>
                 <Typography my={2} color="primary" variant="h2" component="h1">Verifica tu dirección de correo electrónico.</Typography>
                 <Typography mb={3} color="primary" id="transition-modal-title" variant="h6" component="h2">
-                    Confirma tu email para tener acceso a la aplicación.
+                    Confirma tu email "{currentEmail}" para tener acceso a la aplicación.
                 </Typography>
                 <Button
                     variant="contained"

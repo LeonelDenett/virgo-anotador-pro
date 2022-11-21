@@ -24,10 +24,12 @@ import { motion } from "framer-motion";
 import { dashboard } from "../components/FramerMotionVariants/Variants";
 // Global User
 import { useUserAuth } from "../components/AuthContext";
+// Firebase
+import { auth, db } from "../firebase-config";
 // Toastify
 import { toast } from "react-toastify";
 import { addDoc, collection, doc, getDoc, setDoc } from "firebase/firestore";
-import { db } from "../firebase-config";
+
 
 export default function Home() {
     // Router
@@ -48,6 +50,7 @@ export default function Home() {
 
     useEffect(() => {
         if (!globalUser) {
+            logout()
             router.push('/login')
         } else {
             // Email verification
@@ -60,27 +63,29 @@ export default function Home() {
         }
     }, [])
 
-    useEffect(() => {
-        async function createUserFetch() {
-            const createUserDocFetch = createData(globalUser.email)
-        }
-        createUserFetch()
-    }, [])
-
-    async function createData(idDocument) {
-        const docUserRef = doc(db, `users/${idDocument}`)
-        getDoc(docUserRef);
-        const consult = await getDoc(docUserRef);
-        if (consult.exists()){
-            console.log("Users collection updated with the new user")
-        } else {
-            await setDoc(docUserRef, {
-                date: now.toLocaleDateString() + " at " + current,
-            })
+    if (globalUser) {
+        useEffect(() => {
+            async function createUserFetch() {
+                const createUserDocFetch = createData(globalUser.email)
+            }
+            createUserFetch()
+        }, [])
+    
+        async function createData(idDocument) {
+            const docUserRef = doc(db, `users/${idDocument}`)
+            getDoc(docUserRef);
+            const consult = await getDoc(docUserRef);
+            if (consult.exists()){
+                console.log("Users collection updated with the new user")
+            } else {
+                await setDoc(docUserRef, {
+                    date: now.toLocaleDateString() + " at " + current,
+                })
+            }
         }
     }
 
-  return (
+    return (
     <Box
         className={styles.container}
         sx={{px: {xs: "1.25rem", md: "10rem", lg: "20rem"}, py: {xs: "1.25rem", lg: "1.5rem"}}}
